@@ -3,6 +3,8 @@
 #include "shellparser.h"
 #include "shellscanner.h"
 
+#define LINE_BUF_SIZE 1024
+
 void* ParseAlloc(void* (*allocProc)(size_t));
 void* Parse(void*, int, const char*);
 void* ParseFree(void*, void(*freeProc)(void*));
@@ -34,8 +36,8 @@ void parse(const char *commandLine) {
 
 // Borrowed from http://stackoverflow.com/a/314422/79202.
 char * getline_from(FILE *fp) {
-    char * line = malloc(100), * linep = line;
-    size_t lenmax = 100, len = lenmax;
+    char * line = malloc(LINE_BUF_SIZE), * linep = line;
+    size_t lenmax = LINE_BUF_SIZE, len = lenmax;
     int c;
 
     if(line == NULL)
@@ -51,6 +53,7 @@ char * getline_from(FILE *fp) {
             char * linen = realloc(linep, lenmax *= 2);
 
             if(linen == NULL) {
+                // Fail.
                 free(linep);
                 return NULL;
             }
