@@ -71,6 +71,7 @@ int main(int argc, char** argv) {
     printf("> ");
     while ( line = get_stdin_line() ) {
         parse(line);
+        free(line);
         printf("> ");
     }
     return 0;
