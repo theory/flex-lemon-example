@@ -5,9 +5,9 @@ shell: main.o shellparser.o shellscanner.o
 
 main.o: main.c shellparser.h shellscanner.h
 
-shellparser.o: shellparser.h
+shellparser.o: shellparser.h shellparser.c
 
-shellparser.h: shellparser.y lemon
+shellparser.h shellparser.c: shellparser.y lemon
 	./lemon shellparser.y
 
 shellscanner.o: shellscanner.h

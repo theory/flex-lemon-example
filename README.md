@@ -10,7 +10,6 @@ by [@bskari](https://github.com/bskari). The tutorials:
 To build it, run:
 
     make
-    make
 
 Then to run it:
 
