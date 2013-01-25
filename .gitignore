@@ -1,0 +1,8 @@
+/lemon
+*.o
+/shellparser.c
+/shellparser.h
+/shellparser.out
+/shellscanner.h
+/shell
+
