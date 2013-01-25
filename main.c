@@ -33,7 +33,7 @@ void parse(const char *commandLine) {
 }
 
 // Borrowed from http://stackoverflow.com/a/314422/79202.
-char * getline(void) {
+char * get_stdin_line(void) {
     char * line = malloc(100), * linep = line;
     size_t lenmax = 100, len = lenmax;
     int c;
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     void* shellParser = ParseAlloc(malloc);
     char *line;
     printf("> ");
-    while ( line = getline() ) {
+    while ( line = get_stdin_line() ) {
         parse(line);
         printf("> ");
     }
