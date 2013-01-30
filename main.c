@@ -10,7 +10,6 @@ void* Parse(void*, int, const char*);
 void* ParseFree(void*, void(*freeProc)(void*));
 
 int main(int argc, char** argv) {
-    printf("> ");
     // Set up the scanner
     yyscan_t scanner;
     yylex_init(&scanner);
@@ -19,11 +18,15 @@ int main(int argc, char** argv) {
     // Set up the parser
     void* shellParser = ParseAlloc(malloc);
 
+    // Do it!
+    printf("> ");
     int lexCode;
     do {
         lexCode = yylex(scanner);
-        Parse(shellParser, lexCode, NULL);
-        if (lexCode == EOL) printf("> ");
+        Parse(shellParser, lexCode, yyget_text(scanner));
+        // XXX This line should not be necessary; EOL should automatically
+        // terminate parsing. :-(
+        if (lexCode == EOL) Parse(shellParser, 0, NULL);
     } while (lexCode > 0);
 
     if (-1 == lexCode) {
