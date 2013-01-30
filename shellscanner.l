@@ -10,11 +10,12 @@
 
 %%
 
-"|"                     { return PIPE; }
+"|"                     { printf("PIPE\n"); return PIPE; }
 
-[ \t\n\r]               { }
+[ \t\r]                 { }
+\n                      { return EOL; }
 
-[a-zA-Z0-9_\.\-]+       { return FILENAME; }
+[a-zA-Z0-9_\.\-]+       { printf("FILENAME: \"%s\"\n", yytext); return FILENAME; }
 
 [']                     { BEGIN(SINGLE_QUOTED); }
 <SINGLE_QUOTED>[^']+    { }

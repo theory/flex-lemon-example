@@ -13,10 +13,10 @@
 start ::= commandList .
 {
 }
-commandList ::= command PIPE commandList .
+commandList ::= command PIPE commandList EOL .
 {
 }
-commandList ::= command .
+commandList ::= command EOL .
 {
 }
 
