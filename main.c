@@ -3,8 +3,6 @@
 #include "shellparser.h"
 #include "shellscanner.h"
 
-#define LINE_BUF_SIZE 1024
-
 void* ParseAlloc(void* (*allocProc)(size_t));
 void* Parse(void*, int, const char*);
 void* ParseFree(void*, void(*freeProc)(void*));

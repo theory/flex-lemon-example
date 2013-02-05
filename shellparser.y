@@ -14,7 +14,7 @@ start ::= in .
 in ::= .
 in ::= in commandList EOL .
 {
-    printf("start ::= commandList .\n");
+    printf("in ::= in commandList EOL .\n");
     printf("> ");
 }
 
